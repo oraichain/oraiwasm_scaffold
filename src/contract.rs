@@ -1,8 +1,7 @@
-use crate::msg::{Data, DataSourceQueryMsg, HandleMsg, InitMsg, QueryMsg};
+use crate::msg::{HandleMsg, InitMsg, QueryMsg};
 use crate::{error::ContractError, msg::Response};
 use cosmwasm_std::{
-    to_binary, Binary, Deps, DepsMut, Env, HandleResponse, HumanAddr, InitResponse, MessageInfo,
-    StdResult,
+    to_binary, Binary, Deps, DepsMut, Env, HandleResponse, InitResponse, MessageInfo, StdResult,
 };
 
 pub fn init(
@@ -26,27 +25,12 @@ pub fn handle(
 
 pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
     match msg {
-        QueryMsg::Test {
-            input,
-            output,
-            contract,
-        } => test_price(deps, &contract, input, output),
+        QueryMsg::Test { input } => get(deps, input),
     }
 }
 
-fn test_price(
-    deps: Deps,
-    contract: &HumanAddr,
-    input: String,
-    _output: String,
-) -> StdResult<Binary> {
-    let msg = DataSourceQueryMsg::Get { input };
-    let data_sources: Vec<Data> = deps.querier.query_wasm_smart(contract, &msg)?;
-    let response = Response {
-        name: String::from(""),
-        result: to_binary(&data_sources).unwrap(),
-        status: String::from("success"),
-    };
-    let resp_bin: Binary = to_binary(&response).unwrap();
+fn get(_deps: Deps, input: String) -> StdResult<Binary> {
+    let response = Response { data: input };
+    let resp_bin: Binary = to_binary(&response)?;
     Ok(resp_bin)
 }
