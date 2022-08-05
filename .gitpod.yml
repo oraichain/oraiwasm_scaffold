@@ -1,9 +1,9 @@
 image: orai/cosmwasm-gitpod:0.11.7
-workspaceLocation: GITPOD_REPO_ROOT
+workspaceLocation: './oraiwasm_scaffold'
 
 tasks:
   - name: init-cargo-file
-    init: cd ${GITPOD_REPO_ROOT} && touch Cargo.toml
+    init: touch Cargo.toml
 
 vscode:
   extensions:
