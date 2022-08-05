@@ -1,6 +1,5 @@
 image: orai/cosmwasm-gitpod:0.11.7
-checkoutLocation: $GITPOD_REPO_ROOT
-workspaceLocation: .
+workspaceLocation: GITPOD_REPO_ROOT
 
 tasks:
   - name: init-cargo-file
