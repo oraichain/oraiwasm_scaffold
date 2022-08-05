@@ -3,7 +3,7 @@ workspaceLocation: "${GITPOD_REPO_ROOT}"
 
 tasks:
   - name: init-cargo-file
-    init: cd ${GITPOD_REPO_ROOT} touch Cargo.toml
+    init: cd ${GITPOD_REPO_ROOT} && touch Cargo.toml
 
 vscode:
   extensions:
