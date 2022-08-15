@@ -1,16 +1,8 @@
 #[cfg(not(feature = "library"))]
-use cosmwasm_std::entry_point;
 use cosmwasm_std::{to_binary, Binary, Deps, Env, StdResult};
 
-use crate::msg::{QueryMsg, QueryResponse};
+use crate::msg::QueryResponse;
 use crate::state::STATE;
-
-#[cfg_attr(not(feature = "library"), entry_point)]
-pub fn query(deps: Deps, env: Env, msg: QueryMsg) -> StdResult<Binary> {
-    match msg {
-        QueryMsg::Counter {} => query_counter(deps, env),
-    }
-}
 
 pub fn query_counter(deps: Deps, _env: Env) -> StdResult<Binary> {
     let current_state = STATE.load(deps.storage)?;
@@ -22,13 +14,10 @@ pub fn query_counter(deps: Deps, _env: Env) -> StdResult<Binary> {
 
 #[cfg(test)]
 mod tests {
-    use crate::contract::instantiate;
-    use crate::execute::execute;
+    use crate::contract::{execute, instantiate, query};
     use crate::msg::{ExecuteMsg, InstantiateMsg, QueryMsg, QueryResponse};
     use cosmwasm_std::testing::{mock_dependencies, mock_env, mock_info};
     use cosmwasm_std::to_binary;
-
-    use super::query;
 
     const ADDR: &str = "addr1";
 
