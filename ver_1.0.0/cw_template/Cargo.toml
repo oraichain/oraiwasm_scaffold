@@ -1,5 +1,5 @@
 [package]
-name = "cw_counter"
+name = "cw_template"
 version = "0.1.0"
 authors = ["im6h <danghaiv.18@gmail.com>"]
 edition = "2018"
