@@ -1,22 +1,9 @@
 #[cfg(not(feature = "library"))]
-use cosmwasm_std::entry_point;
-use cosmwasm_std::{to_binary, DepsMut, Env, MessageInfo, Response};
+use cosmwasm_std::{to_binary, DepsMut, Response};
 
 use crate::error::ContractError;
-use crate::msg::{ExecuteMsg, ExecuteResponse};
+use crate::msg::ExecuteResponse;
 use crate::state::{State, STATE};
-
-#[cfg_attr(not(feature = "library"), entry_point)]
-pub fn execute(
-    deps: DepsMut,
-    _env: Env,
-    _info: MessageInfo,
-    msg: ExecuteMsg,
-) -> Result<Response, ContractError> {
-    match msg {
-        ExecuteMsg::Update {} => try_update_counter(deps),
-    }
-}
 
 pub fn try_update_counter(deps: DepsMut) -> Result<Response, ContractError> {
     let current_state = STATE.load(deps.storage)?;
@@ -42,7 +29,7 @@ mod tests {
     use crate::msg::{ExecuteMsg, ExecuteResponse};
     use crate::state::STATE;
 
-    use super::execute;
+    use crate::contract::execute;
     use crate::msg::InstantiateMsg;
     use cosmwasm_std::testing::{mock_dependencies, mock_env, mock_info};
     use cosmwasm_std::to_binary;
