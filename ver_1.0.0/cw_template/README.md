@@ -48,4 +48,4 @@ osmosisd tx wasm instantiate $CODE_ID '{}' $OSM_NODE --chain-id $OSM_CHAIN_ID --
 
 ```
 
-### Malaga chain:
+### Malaga chain (WIP):
