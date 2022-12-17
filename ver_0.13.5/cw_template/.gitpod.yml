@@ -1,7 +1,0 @@
-image: orai/cosmwasm-gitpod:0.11.7
-workspaceLocation: '.'
-
-vscode:
-  extensions:
-    - matklad.rust-analyzer
-    - oraichain.cosmwasm-ide

@@ -1,3 +1,3 @@
 [workspace]
-members = ["oraiwasm_scaffold/ver_0.13.5/*","oraiwasm_scaffold/ver_1.0.0/*"]
+members = ["packages/*"]
 resolver = "2"
